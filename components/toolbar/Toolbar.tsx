@@ -59,7 +59,7 @@ export default function Toolbar({
   const showColorStroke = DRAWING_TOOLS.includes(activeTool)
 
   return (
-    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-1.5">
+    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-1.5 overflow-y-auto max-h-[calc(100vh-32px)] no-scrollbar">
       {/* Tools */}
       <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 shadow-2xl shadow-black/40">
         {TOOLS.map((tool) => (
