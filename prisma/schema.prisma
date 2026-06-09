@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownedBoards  Board[]
+  memberships  BoardMember[]
+}
+
+model Board {
+  id          String   @id @default(cuid())
+  roomId      String   @unique   // the URL slug (e.g. "ocean-forest-123")
+  title       String   @default("Untitled Board")
+  elements    Json     @default("[]")  // serialized CanvasElement[]
+  thumbnail   String?  // base64 or URL of last export
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id])
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members     BoardMember[]
+}
+
+model BoardMember {
+  id        String   @id @default(cuid())
+  boardId   String
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  role      Role     @default(EDITOR)
+  joinedAt  DateTime @default(now())
+
+  @@unique([boardId, userId])
+}
+
+enum Role {
+  VIEWER
+  EDITOR
+  OWNER
+}

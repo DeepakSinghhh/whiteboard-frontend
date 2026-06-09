@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0f0f12;
+  overflow: hidden;
+  /* Prevent pull-to-refresh on mobile interfering with drawing */
+  overscroll-behavior: none;
+}
+
+canvas { display: block; }
+
+/* Hide scrollbar but keep scrollable */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Safe area for notched phones */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 8px); }
+
+/* Prevent text selection during drawing */
+.drawing-active { user-select: none; -webkit-user-select: none; }
+
+@layer utilities {
+  .touch-none { touch-action: none; }
+}
