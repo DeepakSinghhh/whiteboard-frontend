@@ -145,7 +145,14 @@ export function useCanvas(elements: CanvasElement[], selectedId?: string | null)
   }, [elements, selectedId])
 
   useEffect(() => {
-    const id = requestAnimationFrame(redraw)
+    let id: number
+
+    const renderLoop = () => {
+      redraw()
+      id = requestAnimationFrame(renderLoop)
+    }
+
+    id = requestAnimationFrame(renderLoop)
     return () => cancelAnimationFrame(id)
   }, [redraw])
 
