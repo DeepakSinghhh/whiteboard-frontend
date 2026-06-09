@@ -59,9 +59,9 @@ export default function Toolbar({
   const showColorStroke = DRAWING_TOOLS.includes(activeTool)
 
   return (
-    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-1.5 overflow-y-auto max-h-[calc(100vh-32px)] no-scrollbar">
+    <div className="absolute left-4 top-4 bottom-4 z-20 flex flex-col gap-1.5 overflow-y-auto no-scrollbar">
       {/* Tools */}
-      <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 shadow-2xl shadow-black/40">
+      <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 shadow-2xl shadow-black/40 flex-shrink-0">
         {TOOLS.map((tool) => (
           <button
             key={tool.id}
@@ -86,7 +86,7 @@ export default function Toolbar({
       {/* Stroke + Colors — only for drawing tools */}
       {showColorStroke && (
         <>
-          <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 items-center shadow-2xl shadow-black/40">
+          <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 items-center shadow-2xl shadow-black/40 flex-shrink-0">
             {STROKE_SIZES.map((size) => (
               <button key={size} onClick={() => onStrokeWidthChange(size)} title={`${size}px`}
                 className={cn("w-9 h-9 rounded-xl flex items-center justify-center transition-all", strokeWidth === size ? "bg-[#1e1e2a]" : "hover:bg-[#1a1a22]")}>
@@ -95,7 +95,7 @@ export default function Toolbar({
             ))}
           </div>
 
-          <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-1 items-center shadow-2xl shadow-black/40">
+          <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-1 items-center shadow-2xl shadow-black/40 flex-shrink-0">
             {COLORS.map((c) => (
               <button key={c} onClick={() => onColorChange(c)}
                 className={cn("w-6 h-6 rounded-lg transition-all border-2 hover:scale-110", color === c ? "border-[#7c6aff] scale-110 shadow-lg shadow-[#7c6aff]/40" : "border-transparent")}
@@ -109,7 +109,7 @@ export default function Toolbar({
       )}
 
       {/* Actions */}
-      <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 shadow-2xl shadow-black/40">
+      <div className="bg-[#16161a] border border-[#2a2a35] rounded-2xl p-2 flex flex-col gap-0.5 shadow-2xl shadow-black/40 flex-shrink-0">
         {[
           { fn: onUndo, disabled: !canUndo, label: "Undo", shortcut: "⌘Z",
             svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg> },
