@@ -4,6 +4,7 @@ import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { UserButton } from "@clerk/nextjs"
 import type { Board, User } from "@prisma/client"
+import Logo from "@/components/ui/Logo"
 
 type BoardWithOwner = Board & {
   owner: { name: string | null; imageUrl: string | null }
@@ -126,12 +127,10 @@ export default function DashboardClient({ boards: initialBoards, user }: Props) 
       {/* Nav */}
       <nav className="sticky top-0 z-50 flex items-center justify-between px-6 h-14 bg-[rgba(15,15,18,0.9)] backdrop-blur-md border-b border-[#2a2a35]">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-[#7c6aff] rounded-lg flex items-center justify-center">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-              <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-            </svg>
-          </div>
-          <span className="text-white font-semibold text-[14px]">Sketchpad</span>
+          <Logo size={26} />
+          <span className="text-white font-semibold text-[14px] tracking-tight">
+            Collab<span className="text-[#00e5a0]">.io</span>
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-[#555] text-[12px] hidden sm:block">{user.name}</span>

@@ -3,8 +3,8 @@ import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Sketchpad — Collaborative Whiteboard",
-  description: "Real-time collaborative whiteboard",
+  title: "Collab.io — Real-time Collaborative Whiteboard",
+  description: "Draw, collaborate, and brainstorm together in real-time.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

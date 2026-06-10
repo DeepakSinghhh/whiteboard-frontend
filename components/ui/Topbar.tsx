@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import type { Tool } from "@/types"
+import Logo from "./Logo"
 
 interface TopbarProps {
   activeTool: Tool
@@ -47,11 +48,7 @@ export default function Topbar({
     <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
       {/* Logo */}
       <div className="flex items-center gap-2 bg-[#16161a] border border-[#2a2a35] rounded-xl px-3 py-2 shadow-xl shadow-black/30">
-        <div className="w-5 h-5 bg-[#7c6aff] rounded-md flex items-center justify-center">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
-            <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-          </svg>
-        </div>
+        <Logo size={22} />
 
         {/* Editable board title */}
         {editing ? (
